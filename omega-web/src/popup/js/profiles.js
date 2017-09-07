@@ -66,7 +66,8 @@
   function updateMenuByStateAndPageInfo() {
     var state = OmegaPopup.state;
     var info = OmegaPopup.pageInfo;
-    if (state.externalProfile && (!info || !info.errorCount)) {
+    if (state.showExternalProfile && state.externalProfile &&
+        (!info || !info.errorCount)) {
       showMenuForExternalProfile(state);
     }
     if (!info || !info.url) return updateOtherItems(null);
@@ -119,16 +120,21 @@
     });
 
   function addProfilesItems(state) {
+    var systemProfileDisp = document.getElementById('js-system');
+    var directProfileDisp = document.getElementById('js-direct');
     var currentProfileClass = 'om-active';
     if (state.isSystemProfile) {
-      document.getElementById('js-system').parentElement
-        .classList.add('om-active');
+      systemProfileDisp.parentElement.classList.add('om-active');
       currentProfileClass = 'om-effective';
     }
     if (state.currentProfileName === 'direct') {
-      document.getElementById('js-direct').parentElement
-        .classList.add(currentProfileClass);
+      directProfileDisp.parentElement.classList.add(currentProfileClass);
     }
+
+    systemProfileDisp.setAttribute('title',
+      state.availableProfiles['+system'].desc);
+    directProfileDisp.setAttribute('title',
+      state.availableProfiles['+direct'].desc);
 
     var profilesEnd = document.getElementById('js-profiles-end');
     var profilesContainer = profilesEnd.parentElement;
@@ -191,6 +197,9 @@
     if (profile.profileType === 'VirtualProfile') {
       targetProfile = profiles['+' + profile.defaultProfileName];
     }
+
+    profileDisp.setAttribute('title',
+      targetProfile.desc || targetProfile.name || '');
 
     var iconClass = iconForProfileType[targetProfile.profileType];
     var icon = profileDisp.querySelector('.glyphicon');

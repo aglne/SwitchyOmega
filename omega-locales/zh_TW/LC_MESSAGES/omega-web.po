@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-13 11:15+0000\n"
 "PO-Revision-Date: 2015-02-28 07:52+0200\n"
-"Last-Translator: FelisCatus <shyc2010@gmail.com>\n"
+"Last-Translator: FelisCatus <catusx@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) "
 "<https://hosted.weblate.org/projects/switchyomega/main/zh_TW/>\n"
 "Language: zh_TW\n"
@@ -200,6 +200,9 @@ msgstr "還原"
 msgid "options_title"
 msgstr "SwitchyOmega 選項"
 
+msgid "options_experimental_badge"
+msgstr "測試版"
+
 msgid "options_navHeader_setting"
 msgstr "設定"
 
@@ -241,6 +244,9 @@ msgstr "當更改情景模式時刷新當前標籤。"
 
 msgid "options_showInspectMenu"
 msgstr "右鍵選單中，可檢查網頁元素所使用的代理。"
+
+msgid "options_addConditionsToBottom"
+msgstr "把以彈出菜單創建的規則添加到列表末尾。"
 
 msgid "options_group_keyboardShortcut"
 msgstr "鍵盤快捷鍵"
@@ -289,6 +295,35 @@ msgstr "代理設定變化"
 
 msgid "options_revertProxyChanges"
 msgstr "撤消其他擴展對代理的更改。"
+
+msgid "options_group_conflicts"
+msgstr "衝突"
+
+msgid "options_conflicts_introduction"
+msgstr ""
+"有時其他應用也會試圖控制代理設置，從而導致衝突。請注意，去廣告等其他擴展也可能"
+"利用了代理設置來實現功能。此類衝突是由瀏覽器的工作原理引起的，所以無法避免。"
+
+msgid "options_conflicts_lowerPriority"
+msgstr ""
+"如果 SwitchyOmega 圖標上顯示這樣的紅色徽章，表示另一個應用優先級較高，因此"
+"SwitchyOmega 無法控制代理設置。請嘗試卸載 SwitchyOmega 再重新安裝，這樣可能可"
+"以提高 SwitchyOmega 的優先級。如果重裝後您仍然看到衝突，那麼請考慮移除那個"
+"導致衝突的應用。"
+
+msgid "options_conflicts_higherPriority"
+msgstr ""
+"如果 SwitchyOmega 的優先級較高，那麼您可以在彈出菜單中選擇 $SYSTEMPROFILE$ 來"
+"把控制權還給其他應用或系統設置。"
+
+msgid "options_showExternalProfile"
+msgstr "在彈出菜單中顯示菜單項，以導入其他應用提供的代理設置。"
+
+msgid "options_showExternalProfileHelp"
+msgstr ""
+"選擇了 $SYSTEMPROFILE$ 的情況下，您可以在彈出菜單中選擇 $EXTERNALPROFILE$ 來"
+"導入其他應用提供的代理設置。導入的設置將會成為一個新的情景模式，其名稱由您決"
+"定。請注意導入的情景模式只是當時的一個快照，導入後不會隨著原來的應用更新。"
 
 msgid "options_group_networkRequests"
 msgstr "網路請求"
@@ -987,6 +1022,9 @@ msgstr "設定網路檢測選項"
 msgid "options_resultProfileForSelectedDomains"
 msgstr "對所有選中域名使用此情景模式："
 
+msgid "options_pac_profile_unsupported_moz"
+msgstr "由於技術限制，PAC 情景模式無法在 Mozilla Firefox 上工作！"
+
 msgid "popup_issueTemplate"
 msgstr ""
 "\n"
@@ -1069,6 +1107,9 @@ msgstr "一個代理設置工具"
 
 msgid "about_version"
 msgstr "版本 $VERSION$"
+
+msgid "about_experimental_warning_moz"
+msgstr "Mozilla Firefox 瀏覽器支持目前仍處於早期實驗階段！如果您遇到任何問題，請使用下方的按鈕進行反饋。"
 
 msgid "about_disclaimer_networkService"
 msgstr "SwitchyOmega 不提供代理伺服器、VPN等網絡服務。"

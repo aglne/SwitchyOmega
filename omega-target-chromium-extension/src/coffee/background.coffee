@@ -66,7 +66,7 @@ actionForUrl = (url) ->
   options.ready.then(->
     request = OmegaPac.Conditions.requestFromUrl(url)
     options.matchProfile(request)
-  ).then ({profile, results}) ->
+  ).then(({profile, results}) ->
     current = options.currentProfile()
     currentName = dispName(current.name)
     if current.profileType == 'VirtualProfile'
@@ -135,23 +135,31 @@ actionForUrl = (url) ->
       profileColor = current.color
 
     icon ?= drawIcon(resultColor, profileColor)
+
+    shortTitle = 'Omega: ' + currentName # TODO: I18n.
+    if profile.name != currentName
+      shortTitle += ' => ' + profile.name # TODO: I18n.
+
     return {
       title: chrome.i18n.getMessage('browserAction_titleWithResult', [
         currentName
         dispName(profile.name)
         details
       ])
+
+      shortTitle: shortTitle
       icon: icon
       resultColor: resultColor
       profileColor: profileColor
     }
+  ).catch -> return null
 
 
-storage = new OmegaTargetCurrent.Storage(chrome.storage.local, 'local')
+storage = new OmegaTargetCurrent.Storage('local')
 state = new OmegaTargetCurrent.BrowserStorage(localStorage, 'omega.local.')
 
-if chrome.storage.sync
-  syncStorage = new OmegaTargetCurrent.Storage(chrome.storage.sync, 'sync')
+if chrome?.storage?.sync or browser?.storage?.sync
+  syncStorage = new OmegaTargetCurrent.Storage('sync')
   sync = new OmegaTargetCurrent.OptionsSync(syncStorage)
   if localStorage['omega.local.syncOptions'] != '"sync"'
     sync.enabled = false
@@ -178,6 +186,7 @@ options._inspect = new OmegaTargetCurrent.Inspect (url, tab) ->
   state.set({inspectUrl: url})
 
   actionForUrl(url).then (action) ->
+    return if not action
     parsedUrl = OmegaTargetCurrent.Url.parse(url)
     if parsedUrl.hostname == OmegaTargetCurrent.Url.parse(tab.url).hostname
       urlDisp = parsedUrl.path
@@ -255,12 +264,15 @@ options.currentProfileChanged = (reason) ->
   if currentName
     title = chrome.i18n.getMessage('browserAction_titleWithResult', [
       currentName, '', details])
+    shortTitle = 'Omega: ' + currentName # TODO: I18n.
   else
     title = details
+    shortTitle = 'Omega: ' + details # TODO: I18n.
 
   if external and current.profileType != 'SystemProfile'
     message = chrome.i18n.getMessage('browserAction_titleExternalProxy')
     title = message + '\n' + title
+    shortTitle = 'Omega-Extern: ' + details # TODO: I18n.
     options.setBadge()
 
   if not current.name or not OmegaPac.Profiles.isInclusive(current)
@@ -271,6 +283,7 @@ options.currentProfileChanged = (reason) ->
   tabs.resetAll(
     icon: icon
     title: title
+    shortTitle: shortTitle
   )
 
 encodeError = (obj) ->
@@ -288,10 +301,15 @@ encodeError = (obj) ->
 refreshActivePageIfEnabled = ->
   return if localStorage['omega.local.refreshOnProfileChange'] == 'false'
   chrome.tabs.query {active: true, lastFocusedWindow: true}, (tabs) ->
-    if tabs[0].url and tabs[0].url.substr(0, 6) != 'chrome'
-      chrome.tabs.reload(tabs[0].id, {bypassCache: true})
+    url = tabs[0].url
+    return if not url
+    return if url.substr(0, 6) == 'chrome'
+    return if url.substr(0, 6) == 'about:'
+    return if url.substr(0, 4) == 'moz-'
+    chrome.tabs.reload(tabs[0].id, {bypassCache: true})
 
 chrome.runtime.onMessage.addListener (request, sender, respond) ->
+  return unless request and request.method
   options.ready.then ->
     target = options
     method = target[request.method]

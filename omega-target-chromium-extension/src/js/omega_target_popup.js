@@ -43,7 +43,7 @@ OmegaTargetPopup = {
     chrome.tabs.query({
       url: options_url
     }, function(tabs) {
-      if (tabs.length > 0) {
+      if (!chrome.runtime.lastError && tabs && tabs.length > 0) {
         var props = {
           active: true
         };
@@ -75,7 +75,9 @@ OmegaTargetPopup = {
     callBackgroundNoReply('addTempRule', [domain, profileName], cb);
   },
   openManage: function(domain, profileName, cb) {
-    chrome.tabs.create({url: 'chrome://extensions/?id=' + chrome.runtime.id});
+    chrome.tabs.create({
+      url: 'chrome://extensions/?id=' + chrome.runtime.id,
+    }, cb);
   },
   getMessage: chrome.i18n.getMessage.bind(chrome.i18n),
 };

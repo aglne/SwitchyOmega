@@ -10,6 +10,7 @@ module.exports = class ExternalApi
     'padekgcemlokbadohgkifijomclgjgif': 32
   disabled: false
   listen: ->
+    return unless chrome.runtime.onConnectExternal
     chrome.runtime.onConnectExternal.addListener (rawPort) =>
       port = new ChromePort(rawPort)
       port.onMessage.addListener (msg) => @onMessage(msg, port)
@@ -21,7 +22,7 @@ module.exports = class ExternalApi
     return unless @disabled
 
     @options.setProxyNotControllable(null)
-    chrome.browserAction.setPopup({popup: 'popup/index.html'})
+    chrome.browserAction.setPopup?({popup: 'popup/index.html'})
     @options.reloadQuickSwitch()
     @disabled = false
     @options.clearBadge()
@@ -48,7 +49,7 @@ module.exports = class ExternalApi
           if @knownExts[port.sender.id] >= 32
             reason = 'upgrade'
           @options.setProxyNotControllable reason, {text: 'X', color: '#5ab432'}
-        chrome.browserAction.setPopup({popup: 'popup/index.html'})
+        chrome.browserAction.setPopup?({popup: 'popup/index.html'})
         port.postMessage({action: 'state', state: 'disabled'})
       when 'enable'
         @reenable()

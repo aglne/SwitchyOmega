@@ -218,6 +218,9 @@ msgstr "Restore"
 msgid "options_title"
 msgstr "SwitchyOmega Options"
 
+msgid "options_experimental_badge"
+msgstr "α"
+
 msgid "options_navHeader_setting"
 msgstr "Settings"
 
@@ -259,6 +262,9 @@ msgstr "Refresh current tab on profile change."
 
 msgid "options_showInspectMenu"
 msgstr "Allow inspecting proxy used for page elements via context menu."
+
+msgid "options_addConditionsToBottom"
+msgstr "Put new conditions added using the popup to the bottom of the list."
 
 msgid "options_group_keyboardShortcut"
 msgstr "Keyboard Shortcut"
@@ -318,6 +324,40 @@ msgstr "Proxy Changes"
 
 msgid "options_revertProxyChanges"
 msgstr "Revert proxy changes done by other apps."
+
+msgid "options_group_conflicts"
+msgstr "Conflicts"
+
+msgid "options_conflicts_introduction"
+msgstr ""
+"Sometimes, other apps will also try to control the proxy settings, resulting "
+"in conflicts. Note that ad blockers and other extensions may also use proxy "
+"settings under the hood. Such conflicts cannot be avoided due to how the "
+"browser works."
+
+msgid "options_conflicts_lowerPriority"
+msgstr ""
+"A red badge like this on the SwitchyOmega icon indicates that another app has "
+"higher priority so SwitchyOmega cannot control the settings. Please try to "
+"uninstall SwitchyOmega and reinstall, which should raise SwitchyOmega's "
+"priority. If you still see conflicts after reinstallation, please consider "
+"removing the other app causing the conflict."
+
+msgid "options_conflicts_higherPriority"
+msgstr ""
+"If SwitchyOmega has higher priority, you can give the control back to other "
+"apps or system settings by selecting $SYSTEMPROFILE$ in the popup menu."
+
+msgid "options_showExternalProfile"
+msgstr "Show popup menu item to import proxy settings from other apps."
+
+msgid "options_showExternalProfileHelp"
+msgstr ""
+"When $SYSTEMPROFILE$ is selected, you can import the effective proxy settings "
+"from other apps by selecting $EXTERNALPROFILE$ on the popup menu. "
+"The settings will be imported as a profile using the name you provide. "
+"Please note that the imported profile is a snapshot and will not reflect "
+"any changes from the source app thereafter."
 
 msgid "options_group_networkRequests"
 msgstr "Network Requests"
@@ -1129,6 +1169,9 @@ msgstr "Configure Network Monitor"
 msgid "options_resultProfileForSelectedDomains"
 msgstr "Use this profile for all selected domains"
 
+msgid "options_pac_profile_unsupported_moz"
+msgstr "PAC Profiles WILL NOT work in Mozilla Firefox due to technical limitations!"
+
 msgid "popup_issueTemplate"
 msgstr ""
 "\n"
@@ -1212,6 +1255,9 @@ msgstr "A proxy configuration tool"
 
 msgid "about_version"
 msgstr "Version $VERSION$"
+
+msgid "about_experimental_warning_moz"
+msgstr "Mozilla Firefox support is highly experimental! If you encounter issues, please report using the buttons below."
 
 msgid "about_disclaimer_networkService"
 msgstr "SwitchyOmega does not provide proxies, VPNs, or other network services."

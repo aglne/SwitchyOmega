@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: SwitchyOmega 2.3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-13 10:29+0000\n"
-"PO-Revision-Date: 2016-08-21 08:55+0000\n"
-"Last-Translator: ReZa ZaRe <rz.zare@gmail.com>\n"
+"PO-Revision-Date: 2017-07-20 12:16+0000\n"
+"Last-Translator: Goudarz Jafari <goudarz.jafari@gmail.com>\n"
 "Language-Team: Persian "
 "<https://hosted.weblate.org/projects/switchyomega/main/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.8-dev\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.16-dev\n"
 
 msgid "appNameShort"
 msgstr "SwitchyOmega"
@@ -22,10 +22,10 @@ msgstr "پروکسی SwitchyOmega"
 
 msgid "manifest_app_description"
 msgstr ""
-"به راحتی و با سرعت بین پروکسی های خود جابهجا شوید و آنها را مدیریت کنید ."
+"به راحتی و با سرعت بین پروکسی های خود جابه‌جا شوید و آنها را مدیریت کنید."
 
 msgid "manifest_icon_default_title"
-msgstr "درحال بارگذاری .…"
+msgstr "درحال بارگذاری…"
 
 msgid "upgrade_profile_auto"
 msgstr "سوییچ خودکار"
@@ -37,7 +37,7 @@ msgid "profile_system"
 msgstr "[پروکسی سیستم]"
 
 msgid "condition_HostWildcardCondition"
-msgstr "فرانویسه (Wildcard) میزبان"
+msgstr "Wildcard میزبان"
 
 msgid "condition_help_HostWildcardCondition"
 msgstr ""
@@ -135,7 +135,6 @@ msgstr ""
 "تمامی تنظیمات خود را حفظ میکنند و در صورت نیاز میتوانید با برگردان نوع آن به "
 "حالت قبلی آن را فعال کنید ."
 
-#, fuzzy
 msgid "condition_TimeCondition"
 msgstr "زمان فعلی"
 
@@ -147,7 +146,6 @@ msgstr ""
 "<b>24-hour</b> format (from <b>0 to 23</b>). <br>"
 "The calculation happens roughly at the moment when the request is sent."
 
-#, fuzzy
 msgid "condition_WeekdayCondition"
 msgstr "روز هفته"
 
@@ -225,6 +223,9 @@ msgstr "بازگرداندن"
 msgid "options_title"
 msgstr "تنظیمات SwitchyOmega"
 
+msgid "options_experimental_badge"
+msgstr "α"
+
 msgid "options_navHeader_setting"
 msgstr "تنظیمات"
 
@@ -268,6 +269,9 @@ msgid "options_showInspectMenu"
 msgstr ""
 "مجوز برای بررسی پروکسی مورد استفاده برای یک المان صفحه در منوی زمنیه ("
 "context menu)."
+
+msgid "options_addConditionsToBottom"
+msgstr "Put new conditions added using the popup to the bottom of the list."
 
 msgid "options_group_keyboardShortcut"
 msgstr "میانبرهای کیبرد"
@@ -324,6 +328,40 @@ msgstr "تغییر پروکسی"
 
 msgid "options_revertProxyChanges"
 msgstr "بازگرداندن تغییرات پروکسی انجام شده توسط دیگر برنامه ها."
+
+msgid "options_group_conflicts"
+msgstr "Conflicts"
+
+msgid "options_conflicts_introduction"
+msgstr ""
+"Sometimes, other apps will also try to control the proxy settings, resulting "
+"in conflicts. Note that ad blockers and other extensions may also use proxy "
+"settings under the hood. Such conflicts cannot be avoided due to how the "
+"browser works."
+
+msgid "options_conflicts_lowerPriority"
+msgstr ""
+"A red badge like this on the SwitchyOmega icon indicates that another app has "
+"higher priority so SwitchyOmega cannot control the settings. Please try to "
+"uninstall SwitchyOmega and reinstall, which should raise SwitchyOmega's "
+"priority. If you still see conflicts after reinstallation, please consider "
+"removing the other app causing the conflict."
+
+msgid "options_conflicts_higherPriority"
+msgstr ""
+"If SwitchyOmega has higher priority, you can give the control back to other "
+"apps or system settings by selecting $SYSTEMPROFILE$ in the popup menu."
+
+msgid "options_showExternalProfile"
+msgstr "Show popup menu item to import proxy settings from other apps."
+
+msgid "options_showExternalProfileHelp"
+msgstr ""
+"When $SYSTEMPROFILE$ is selected, you can import the effective proxy settings "
+"from other apps by selecting $EXTERNALPROFILE$ on the popup menu. "
+"The settings will be imported as a profile using the name you provide. "
+"Please note that the imported profile is a snapshot and will not reflect "
+"any changes from the source app thereafter."
 
 msgid "options_group_networkRequests"
 msgstr "درخواست های شبکه"
@@ -701,7 +739,7 @@ msgid "options_hostLevelsBetween"
 msgstr "≤ سطوح میزبان ≤"
 
 msgid "options_hourBetween"
-msgstr "≤ current hour ≤"
+msgstr "≤ ساعت کنونی ≤"
 
 msgid "options_weekDayShort_0"
 msgstr "Su"
@@ -973,7 +1011,7 @@ msgid "options_profileDownloadError"
 msgstr "خطا در حین دانلود داده ی پروفایل !"
 
 msgid "options_profileDownloadError_NetworkError"
-msgstr "A network error occurred when updating."
+msgstr "هنگام به‌روز رسانی خطای در شبکه اینترنت رخ داد."
 
 msgid "options_profileDownloadError_HttpError"
 msgstr "An HTTP error ($STATUS$) occurred when updating."
@@ -1135,6 +1173,9 @@ msgstr "تنظیم مانیتور شبکه"
 msgid "options_resultProfileForSelectedDomains"
 msgstr "از این پروفایل برای تمامی دامنه های منتخب استفاده کن"
 
+msgid "options_pac_profile_unsupported_moz"
+msgstr "PAC Profiles WILL NOT work in Mozilla Firefox due to technical limitations!"
+
 msgid "popup_issueTemplate"
 msgstr ""
 "\n"
@@ -1213,13 +1254,16 @@ msgid "contextMenu_enableQuickSwitch"
 msgstr "فعال سازی تغییر سرعتی"
 
 msgid "about_title"
-msgstr "About"
+msgstr "درباره"
 
 msgid "about_app_description"
-msgstr "A proxy configuration tool"
+msgstr "ابزار پیکربندی پراکسی"
 
 msgid "about_version"
-msgstr "Version $VERSION$"
+msgstr "نسخه $VERSION$"
+
+msgid "about_experimental_warning_moz"
+msgstr "Mozilla Firefox support is highly experimental! If you encounter issues, please report using the buttons below."
 
 msgid "about_disclaimer_networkService"
 msgstr "SwitchyOmega does not provide proxies, VPNs, or other network services."
@@ -1233,7 +1277,11 @@ msgstr "Other questions? Need help with using SwitchyOmega? Please see our "
 "<a href='https://github.com/FelisCatus/SwitchyOmega/wiki/FAQ'>FAQ</a>."
 
 msgid "about_copyright"
-msgstr "Copyright 2012-2017 <a href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>The SwitchyOmega Authors</a>. All rights reserved."
+msgstr ""
+"کپی رایت 2012-2017 <a "
+"href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>"
+"نویسندگان The SwitchyOmega </a>. کلیه حقوق محفوظ است. <a "
+"href='http://GoudarzJafari.com'> ترجمه شده به فارسی توسط گودرز جعفری </a>."
 
 msgid "about_credits"
 msgstr "SwitchyOmega is made possible by the <a href='https://github.com/FelisCatus/SwitchyOmega'>SwitchyOmega</a> open source project and other <a href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>open source software</a>."

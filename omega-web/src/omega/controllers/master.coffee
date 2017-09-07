@@ -1,7 +1,11 @@
 angular.module('omega').controller 'MasterCtrl', ($scope, $rootScope, $window,
   $q, $modal, $state, profileColors, profileIcons, omegaTarget,
   $timeout, $location, $filter, getAttachedName, isProfileNameReserved,
-  isProfileNameHidden, dispNameFilter) ->
+  isProfileNameHidden, dispNameFilter, downloadFile) ->
+
+  if not chrome?.proxy?.settings?
+    $scope.isExperimental = true
+    $scope.pacProfilesUnsupported = true
 
   tr = $filter('tr')
 
@@ -42,7 +46,7 @@ angular.module('omega').controller 'MasterCtrl', ($scope, $rootScope, $window,
       pac = OmegaPac.PacGenerator.ascii(pac)
       blob = new Blob [pac], {type: "text/plain;charset=utf-8"}
       fileName = profileName.replace(/\W+/g, '_')
-      saveAs(blob, "OmegaProfile_#{fileName}.pac")
+      downloadFile(blob, "OmegaProfile_#{fileName}.pac")
       if missingProfile
         $timeout ->
           $rootScope.showAlert(
@@ -104,6 +108,13 @@ angular.module('omega').controller 'MasterCtrl', ($scope, $rootScope, $window,
   $rootScope.profileByName = (name) ->
     OmegaPac.Profiles.byName(name, $rootScope.options)
 
+  $rootScope.systemProfile = $rootScope.profileByName('system')
+  $rootScope.externalProfile =
+    color: '#49afcd'
+    name: tr('popup_externalProfile')
+    profileType: 'FixedProfile'
+    fallbackProxy: {host: "127.0.0.1", port: 42, scheme: "http"}
+
   $rootScope.applyOptionsConfirm = ->
     return $q.reject 'form_invalid' unless checkFormValid()
     return $q.when(true) unless $rootScope.optionsDirty
@@ -122,6 +133,7 @@ angular.module('omega').controller 'MasterCtrl', ($scope, $rootScope, $window,
     scope.profileIcons = profileIcons
     scope.dispNameFilter = dispNameFilter
     scope.options = $scope.options
+    scope.pacProfilesUnsupported = $scope.pacProfilesUnsupported
     $modal.open(
       templateUrl: 'partials/new_profile.html'
       scope: scope

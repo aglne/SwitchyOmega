@@ -14,12 +14,19 @@
 
   function closePopup() {
     window.close();
+    // If the popup is opened as a tab, the above won't work. Let's reload then.
+    document.body.style.opacity = 0;
+    setTimeout(function() { history.go(0); }, 300);
   }
 
-  function showOptions() {
-    $script.ready('om-target', function() {
-      OmegaTargetPopup.openOptions(null, closePopup);
-    });
+  function showOptions(e) {
+    if (typeof OmegaTargetPopup !== 'undefined') {
+      try {
+        OmegaTargetPopup.openOptions(null, closePopup);
+        e.preventDefault();
+      } catch (_) {
+      }
+    }
   }
 
   function applyProfile(profileName) {
